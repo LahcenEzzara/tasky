@@ -14,7 +14,6 @@ public class TaskDao {
     public List<Task> getAllTasks() {
         List<Task> tasks = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery("SELECT * FROM task")) {
-
             while (resultSet.next()) {
                 Task task = new Task();
                 task.id = resultSet.getInt("id");
@@ -24,18 +23,16 @@ public class TaskDao {
                 tasks.add(task);
             }
         } catch (SQLException e) {
-            System.out.println("Error fetching tasks: " + e.getMessage());
+
         }
         return tasks;
     }
 
     public void createTask(Task task) {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO task (title, description, user_id) VALUES (?, ?, ?)")) {
-
-            preparedStatement.setString(1, task.title);
-            preparedStatement.setString(2, task.description);
-            preparedStatement.setInt(3, task.userId);
-            preparedStatement.executeUpdate();
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String query = "INSERT INTO task (title, description, user_id) VALUES ('" + task.title + "', '" + task.description + "', " + task.userId + ")";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
         } catch (SQLException e) {
             System.out.println("Error creating task: " + e.getMessage());
         }
@@ -43,7 +40,18 @@ public class TaskDao {
 
     public void updateTask(Task task) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE task SET title = ?, description = ?, user_id = ? WHERE id = ?")) {
+            preparedStatement.setString(1, task.title);
+            preparedStatement.setString(2, task.description);
+            preparedStatement.setInt(3, task.userId);
+            preparedStatement.setInt(4, task.id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error updating task: " + e.getMessage());
+        }
+    }
 
+    public void modifyTask(Task task) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE task SET title = ?, description = ?, user_id = ? WHERE id = ?")) {
             preparedStatement.setString(1, task.title);
             preparedStatement.setString(2, task.description);
             preparedStatement.setInt(3, task.userId);
@@ -56,9 +64,7 @@ public class TaskDao {
 
     public void deleteTask(int id) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM task WHERE id = ?")) {
-
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate(); // Missing parameter
         } catch (SQLException e) {
             System.out.println("Error deleting task: " + e.getMessage());
         }

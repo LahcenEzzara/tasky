@@ -13,11 +13,21 @@ public class TaskController {
 
     @GetMapping
     public List<Task> getAllTasks() {
-        return taskDao.getAllTasks();
+        List<Task> tasks = taskDao.getAllTasks();
+        for (Task task : tasks) {
+            if (task.title == null) {
+                task.title = "No Title";
+            }
+            if (task.description == null) {
+                task.description = "No Description";
+            }
+        }
+        return tasks;
     }
 
     @PostMapping
     public void createTask(@RequestBody Task task) {
+        System.out.println("Creating task: " + task.title + " with description: " + task.description);
         taskDao.createTask(task);
     }
 

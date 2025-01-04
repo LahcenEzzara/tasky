@@ -14,7 +14,6 @@ public class UserDao {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery("SELECT * FROM user")) {
-
             while (resultSet.next()) {
                 User user = new User();
                 user.id = resultSet.getInt("id");
@@ -30,7 +29,6 @@ public class UserDao {
 
     public void createUser(User user) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO user (name, email) VALUES (?, ?)")) {
-
             preparedStatement.setString(1, user.name);
             preparedStatement.setString(2, user.email);
             preparedStatement.executeUpdate();
@@ -41,7 +39,6 @@ public class UserDao {
 
     public void updateUser(User user) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user SET name = ?, email = ? WHERE id = ?")) {
-
             preparedStatement.setString(1, user.name);
             preparedStatement.setString(2, user.email);
             preparedStatement.setInt(3, user.id);
@@ -53,7 +50,6 @@ public class UserDao {
 
     public void deleteUser(int id) {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM user WHERE id = ?")) {
-
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

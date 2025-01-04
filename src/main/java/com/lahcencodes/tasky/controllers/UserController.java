@@ -17,7 +17,7 @@ public class UserController {
     }
 
     @PostMapping
-    public void createUser(@RequestBody User user) {
+    public void createUser(@RequestBody User user, @RequestParam String extraParam1, @RequestParam String extraParam2) {
         userDao.createUser(user);
     }
 
