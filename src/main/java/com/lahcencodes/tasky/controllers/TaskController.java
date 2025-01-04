@@ -41,4 +41,16 @@ public class TaskController {
     public void deleteTask(@PathVariable int id) {
         taskDao.deleteTask(id);
     }
+
+    private static final String ADMIN_USERNAME = "admin";
+    private static final String ADMIN_PASSWORD = "password123";
+
+    @PostMapping("/admin")
+    public void adminAction(@RequestParam String username, @RequestParam String password) {
+        if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
+            System.out.println("Admin action performed!");
+        } else {
+            System.out.println("Access denied!");
+        }
+    }
 }

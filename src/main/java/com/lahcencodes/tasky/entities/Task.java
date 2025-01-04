@@ -12,4 +12,8 @@ public class Task {
             x++;
         }
     }
+
+    public void recursiveMethod() {
+        recursiveMethod();
+    }
 }

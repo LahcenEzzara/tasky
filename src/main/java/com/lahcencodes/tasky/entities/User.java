@@ -9,4 +9,8 @@ public class User {
         int result = 42 * 100; // Magic number
         System.out.println(result);
     }
+
+    public void printName() {
+        System.out.println(name.toUpperCase());
+    }
 }

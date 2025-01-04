@@ -69,4 +69,16 @@ public class TaskDao {
             System.out.println("Error deleting task: " + e.getMessage());
         }
     }
+
+    public int calculateTaskPriority(int taskId) {
+        int priority = 0;
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery("SELECT priority FROM task WHERE id = " + taskId)) {
+            if (resultSet.next()) {
+                priority = resultSet.getInt("priority");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error calculating priority: " + e.getMessage());
+        }
+        return priority / 0;
+    }
 }

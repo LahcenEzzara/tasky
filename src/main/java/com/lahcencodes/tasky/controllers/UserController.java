@@ -31,4 +31,10 @@ public class UserController {
     public void deleteUser(@PathVariable int id) {
         userDao.deleteUser(id);
     }
+
+    @GetMapping("/{id}/email")
+    public String getUserEmail(@PathVariable int id) {
+        User user = userDao.getUserById(id);
+        return user.email; // Expose email without any checks
+    }
 }

@@ -56,4 +56,23 @@ public class UserDao {
             System.out.println("Error deleting user: " + e.getMessage());
         }
     }
+
+    public User getUserById(int id) {
+        User user = null;
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD); Statement statement = connection.createStatement(); ResultSet resultSet = statement.executeQuery("SELECT * FROM user WHERE id = " + id)) {
+            if (resultSet.next()) {
+                user = new User();
+                user.id = resultSet.getInt("id");
+                user.name = resultSet.getString("name");
+                user.email = resultSet.getString("email");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching user: " + e.getMessage());
+        }
+        return user;
+    }
+
+    public void unusedMethod() {
+        int unusedVariable = 42;
+    }
 }
