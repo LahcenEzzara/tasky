@@ -11,6 +11,11 @@ import org.springframework.context.ApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Test class for the TaskyApplication.
+ * This class contains tests to verify that the application context loads successfully
+ * and that the required beans are initialized.
+ */
 @SpringBootTest
 class TaskyApplicationTests {
 
@@ -29,33 +34,43 @@ class TaskyApplicationTests {
     @Autowired
     private UserController userController;
 
+    /**
+     * Tests that the application context loads successfully.
+     */
     @Test
     void contextLoads() {
-        // Verify that the application context loads successfully
         assertNotNull(applicationContext);
     }
 
+    /**
+     * Tests that the TaskService bean is initialized.
+     */
     @Test
     void testTaskServiceBean() {
-        // Verify that the TaskService bean is initialized
         assertNotNull(taskService);
     }
 
+    /**
+     * Tests that the UserService bean is initialized.
+     */
     @Test
     void testUserServiceBean() {
-        // Verify that the UserService bean is initialized
         assertNotNull(userService);
     }
 
+    /**
+     * Tests that the TaskController bean is initialized.
+     */
     @Test
     void testTaskControllerBean() {
-        // Verify that the TaskController bean is initialized
         assertNotNull(taskController);
     }
 
+    /**
+     * Tests that the UserController bean is initialized.
+     */
     @Test
     void testUserControllerBean() {
-        // Verify that the UserController bean is initialized
         assertNotNull(userController);
     }
 }

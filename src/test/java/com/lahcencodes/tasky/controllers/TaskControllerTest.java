@@ -14,6 +14,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test class for TaskController.
+ * This class contains unit tests for the TaskController methods.
+ */
 class TaskControllerTest {
 
     @Mock
@@ -27,6 +31,9 @@ class TaskControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Tests the getAllTasks method.
+     */
     @Test
     void testGetAllTasks() {
         // Arrange
@@ -52,6 +59,9 @@ class TaskControllerTest {
         verify(taskService, times(1)).getAllTasks();
     }
 
+    /**
+     * Tests the createTask method.
+     */
     @Test
     void testCreateTask() {
         // Arrange
@@ -68,6 +78,9 @@ class TaskControllerTest {
         verify(taskService, times(1)).createTask(task);
     }
 
+    /**
+     * Tests the updateTask method.
+     */
     @Test
     void testUpdateTask() {
         // Arrange
@@ -84,6 +97,9 @@ class TaskControllerTest {
         verify(taskService, times(1)).updateTask(task);
     }
 
+    /**
+     * Tests the deleteTask method.
+     */
     @Test
     void testDeleteTask() {
         // Arrange

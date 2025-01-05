@@ -14,6 +14,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test class for UserController.
+ * This class contains unit tests for the UserController methods.
+ */
 class UserControllerTest {
 
     @Mock
@@ -27,6 +31,9 @@ class UserControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Tests the getAllUsers method.
+     */
     @Test
     void testGetAllUsers() {
         // Arrange
@@ -50,6 +57,9 @@ class UserControllerTest {
         verify(userService, times(1)).getAllUsers();
     }
 
+    /**
+     * Tests the createUser method.
+     */
     @Test
     void testCreateUser() {
         // Arrange
@@ -65,6 +75,9 @@ class UserControllerTest {
         verify(userService, times(1)).createUser(user);
     }
 
+    /**
+     * Tests the updateUser method.
+     */
     @Test
     void testUpdateUser() {
         // Arrange
@@ -80,6 +93,9 @@ class UserControllerTest {
         verify(userService, times(1)).updateUser(user);
     }
 
+    /**
+     * Tests the deleteUser method.
+     */
     @Test
     void testDeleteUser() {
         // Arrange
@@ -92,6 +108,9 @@ class UserControllerTest {
         verify(userService, times(1)).deleteUser(userId);
     }
 
+    /**
+     * Tests the getUserEmail method.
+     */
     @Test
     void testGetUserEmail() {
         // Arrange

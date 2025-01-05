@@ -4,6 +4,10 @@ import com.lahcencodes.tasky.entities.User;
 
 import java.util.List;
 
+/**
+ * Service interface for managing users.
+ * This interface defines the methods for user-related operations.
+ */
 public interface UserService {
     List<User> getAllUsers();
 

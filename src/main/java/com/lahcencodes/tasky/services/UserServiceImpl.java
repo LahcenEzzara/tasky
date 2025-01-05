@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service implementation for managing users.
+ * This class provides the business logic for user-related operations.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {

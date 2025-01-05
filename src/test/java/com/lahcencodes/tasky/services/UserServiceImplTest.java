@@ -15,6 +15,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test class for UserServiceImpl.
+ * This class contains unit tests for the UserServiceImpl methods.
+ */
 class UserServiceImplTest {
 
     @Mock
@@ -28,6 +32,9 @@ class UserServiceImplTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Tests the getAllUsers method.
+     */
     @Test
     void testGetAllUsers() {
         // Arrange
@@ -51,6 +58,9 @@ class UserServiceImplTest {
         verify(userRepository, times(1)).findAll();
     }
 
+    /**
+     * Tests the createUser method.
+     */
     @Test
     void testCreateUser() {
         // Arrange
@@ -68,6 +78,9 @@ class UserServiceImplTest {
         verify(userRepository, times(1)).save(user);
     }
 
+    /**
+     * Tests the updateUser method.
+     */
     @Test
     void testUpdateUser() {
         // Arrange
@@ -85,6 +98,9 @@ class UserServiceImplTest {
         verify(userRepository, times(1)).save(user);
     }
 
+    /**
+     * Tests the deleteUser method.
+     */
     @Test
     void testDeleteUser() {
         // Arrange
@@ -97,6 +113,9 @@ class UserServiceImplTest {
         verify(userRepository, times(1)).deleteById(userId);
     }
 
+    /**
+     * Tests the getUserEmail method.
+     */
     @Test
     void testGetUserEmail() {
         // Arrange
@@ -115,6 +134,9 @@ class UserServiceImplTest {
         verify(userRepository, times(1)).findById(1);
     }
 
+    /**
+     * Tests the getUserEmail method when the user is not found.
+     */
     @Test
     void testGetUserEmail_UserNotFound() {
         // Arrange

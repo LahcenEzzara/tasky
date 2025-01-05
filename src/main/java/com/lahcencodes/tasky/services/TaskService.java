@@ -4,6 +4,10 @@ import com.lahcencodes.tasky.entities.Task;
 
 import java.util.List;
 
+/**
+ * Service interface for managing tasks.
+ * This interface defines the methods for task-related operations.
+ */
 public interface TaskService {
     List<Task> getAllTasks();
 

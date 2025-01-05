@@ -14,6 +14,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test class for TaskServiceImpl.
+ * This class contains unit tests for the TaskServiceImpl methods.
+ */
 class TaskServiceImplTest {
 
     @Mock
@@ -27,6 +31,9 @@ class TaskServiceImplTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Tests the getAllTasks method.
+     */
     @Test
     void testGetAllTasks() {
         // Arrange
@@ -52,6 +59,9 @@ class TaskServiceImplTest {
         verify(taskRepository, times(1)).findAll();
     }
 
+    /**
+     * Tests the createTask method.
+     */
     @Test
     void testCreateTask() {
         // Arrange
@@ -70,6 +80,9 @@ class TaskServiceImplTest {
         verify(taskRepository, times(1)).save(task);
     }
 
+    /**
+     * Tests the updateTask method.
+     */
     @Test
     void testUpdateTask() {
         // Arrange
@@ -88,6 +101,9 @@ class TaskServiceImplTest {
         verify(taskRepository, times(1)).save(task);
     }
 
+    /**
+     * Tests the deleteTask method.
+     */
     @Test
     void testDeleteTask() {
         // Arrange

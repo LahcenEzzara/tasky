@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service implementation for managing tasks.
+ * This class provides the business logic for task-related operations.
+ */
 @Service
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
