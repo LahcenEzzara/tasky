@@ -6,7 +6,7 @@ public class User {
     public String email;
 
     public void calculateSomething() {
-        int result = 42 * 100; // Magic number
+        int result = 42 * 100;
         System.out.println(result);
     }
 

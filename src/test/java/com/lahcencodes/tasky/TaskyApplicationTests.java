@@ -11,7 +11,6 @@ class TaskyApplicationTests {
     void contextLoads() {
     }
 
-    // Minimal test coverage
     @Test
     void testDoNothing() {
         Task task = new Task();
