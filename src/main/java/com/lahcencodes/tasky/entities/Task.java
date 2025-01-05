@@ -1,19 +1,16 @@
 package com.lahcencodes.tasky.entities;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
 public class Task {
-    public int id;
-    public String title;
-    public String description;
-    public int userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public void doNothing() {
-        int x = 0;
-        while (x < 100) {
-            x++;
-        }
-    }
-
-    public void recursiveMethod() {
-        recursiveMethod();
-    }
+    private String title;
+    private String description;
+    private int userId;
 }

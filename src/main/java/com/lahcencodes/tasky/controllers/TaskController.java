@@ -1,56 +1,44 @@
 package com.lahcencodes.tasky.controllers;
 
-import com.lahcencodes.tasky.dao.TaskDao;
 import com.lahcencodes.tasky.entities.Task;
+import com.lahcencodes.tasky.services.TaskService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
-    private TaskDao taskDao = new TaskDao();
+
+    private final TaskService taskService;
+
+    @Autowired
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
 
     @GetMapping
     public List<Task> getAllTasks() {
-        List<Task> tasks = taskDao.getAllTasks();
-        for (Task task : tasks) {
-            if (task.title == null) {
-                task.title = "No Title";
-            }
-            if (task.description == null) {
-                task.description = "No Description";
-            }
-        }
-        return tasks;
+        return taskService.getAllTasks();
     }
 
     @PostMapping
     public void createTask(@RequestBody Task task) {
-        System.out.println("Creating task: " + task.title + " with description: " + task.description);
-        taskDao.createTask(task);
+        log.info("Creating task: {} with description: {}", task.getTitle(), task.getDescription());
+        taskService.createTask(task);
     }
 
     @PutMapping("/{id}")
     public void updateTask(@PathVariable int id, @RequestBody Task task) {
-        task.id = id;
-        taskDao.updateTask(task);
+        task.setId(id);
+        taskService.updateTask(task);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable int id) {
-        taskDao.deleteTask(id);
-    }
-
-    private static final String ADMIN_USERNAME = "admin";
-    private static final String ADMIN_PASSWORD = "password123";
-
-    @PostMapping("/admin")
-    public void adminAction(@RequestParam String username, @RequestParam String password) {
-        if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
-            System.out.println("Admin action performed!");
-        } else {
-            System.out.println("Access denied!");
-        }
+        taskService.deleteTask(id);
     }
 }

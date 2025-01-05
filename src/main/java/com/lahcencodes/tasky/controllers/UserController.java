@@ -1,40 +1,49 @@
 package com.lahcencodes.tasky.controllers;
 
-import com.lahcencodes.tasky.dao.UserDao;
 import com.lahcencodes.tasky.entities.User;
+import com.lahcencodes.tasky.services.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private UserDao userDao = new UserDao();
+
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public List<User> getAllUsers() {
-        return userDao.getAllUsers();
+        return userService.getAllUsers();
     }
 
     @PostMapping
-    public void createUser(@RequestBody User user, @RequestParam String extraParam1, @RequestParam String extraParam2) {
-        userDao.createUser(user);
+    public void createUser(@RequestBody User user) {
+        log.info("Creating user: {}", user.getName());
+        userService.createUser(user);
     }
 
     @PutMapping("/{id}")
     public void updateUser(@PathVariable int id, @RequestBody User user) {
-        user.id = id;
-        userDao.updateUser(user);
+        user.setId(id);
+        userService.updateUser(user);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id) {
-        userDao.deleteUser(id);
+        userService.deleteUser(id);
     }
 
     @GetMapping("/{id}/email")
     public String getUserEmail(@PathVariable int id) {
-        User user = userDao.getUserById(id);
-        return user.email; // Expose email without any checks
+        return userService.getUserEmail(id);
     }
 }

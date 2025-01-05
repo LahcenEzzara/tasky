@@ -1,16 +1,15 @@
 package com.lahcencodes.tasky.entities;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
 public class User {
-    public int id;
-    public String name;
-    public String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public void calculateSomething() {
-        int result = 42 * 100;
-        System.out.println(result);
-    }
-
-    public void printName() {
-        System.out.println(name.toUpperCase());
-    }
+    private String name;
+    private String email;
 }
