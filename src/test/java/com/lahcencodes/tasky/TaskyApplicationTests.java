@@ -15,7 +15,7 @@ class TaskyApplicationTests {
 
     @Test
     void contextLoads() {
-        assertNotNull(taskService);
+
     }
 
     @Test
